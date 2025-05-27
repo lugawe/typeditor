@@ -39,4 +39,11 @@ POP_Rename_File --> Editor_View
 Editor_View --> POP_Confirm_Delete_File
 POP_Confirm_Delete_File --> Editor_View
 
+note left of Editor_View
+  The Editor View Page contains multiple core components:
+   - File View: User switches between multiple files
+   - Editor View: User edits files
+   - PDF Preview: User previews and exports PDFs
+end note
+
 @enduml
