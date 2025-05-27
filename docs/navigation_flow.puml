@@ -1,0 +1,42 @@
+@startuml
+
+[*] --> Sign_In: User is not logged in
+[*] --> Project_Overview: User is logged in
+
+note on link
+  User login status is determined
+  server-side via a JWT cookie.
+end note
+
+
+Sign_In -> Sign_Up
+
+Sign_Up -> Sign_In
+
+Sign_In --> Project_Overview: User login was successful
+
+Project_Overview --> POP_Confirm_Delete_Project
+POP_Confirm_Delete_Project --> Project_Overview
+
+Project_Overview --> POP_Edit_Project
+POP_Edit_Project --> Project_Overview
+
+Project_Overview --> POP_Create_New_Project
+POP_Create_New_Project --> Editor_View
+
+Project_Overview --> Editor_View: User selects project
+
+
+Editor_View --> Editor_View: User switches and edits files \n and also previews and exports PDFs
+
+
+Editor_View --> POP_Create_Or_Upload_File
+POP_Create_Or_Upload_File --> Editor_View
+
+Editor_View --> POP_Rename_File
+POP_Rename_File --> Editor_View
+
+Editor_View --> POP_Confirm_Delete_File
+POP_Confirm_Delete_File --> Editor_View
+
+@enduml
