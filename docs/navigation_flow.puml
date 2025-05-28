@@ -1,5 +1,7 @@
 @startuml
 
+skinparam backgroundColor transparent
+
 [*] --> Sign_In: User is not logged in
 [*] --> Project_Overview: User is logged in
 
