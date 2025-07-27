@@ -2,17 +2,15 @@
 import React from 'react';
 import styles from '../styles/login.module.css';
 
-export default function Login() {
+export default function Signup() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.card}>
         <div className={styles.leftPanel}>
           <h1 className={styles.logo}>Typeditor</h1>
           <p className={styles.tagline}>
-            Typst at your Fingertips!
-          </p>
-          <p className={styles.tagline}>
-            - Anyone, Anywhere, Anything!
+            Start building beautiful docs
+            in seconds
           </p>
         </div>
         <div className={styles.rightPanel}>
@@ -26,9 +24,14 @@ export default function Login() {
             type="password"
             placeholder="Password"
           />
-          <button className={styles.button}>Sign in</button>
-          <a className={styles.link} href="/signup">
-            Sign up
+          <input
+            className={styles.input}
+            type="password"
+            placeholder="Confirm password"
+          />
+          <button className={styles.button}>Sign up</button>
+          <a className={styles.link} href="login">
+            Login
           </a>
         </div>
       </div>
