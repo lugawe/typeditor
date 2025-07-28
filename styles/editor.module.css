@@ -12,12 +12,10 @@
 }
 
 .sidebar {
-    width: 240px;
-    background: #144F4F;
-    color: #EFF0F3;
-    padding: 16px;
-    box-sizing: border-box;
-    overflow-y: auto;
+    color: #eff0f3;
+    background: #144f4f;
+    padding: 1em;
+    flex: .15;
 }
 
 .fileList {
@@ -51,7 +49,7 @@
 }
 
 .editorPane {
-    padding: 16px;
+    padding: 1em;
     overflow: auto;
     background: #fff;
 }
