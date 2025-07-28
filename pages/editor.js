@@ -40,7 +40,7 @@ export default function EditorPage() {
             />
 
             <EditorSplit>
-                <EditorPane content={content} />
+                <EditorPane content={content} onChange={setContent} />
                 <PreviewPane pdfUrl={`/_next/static/${selected.replace(/\..*/, '.pdf')}`} />
             </EditorSplit>
         </div>

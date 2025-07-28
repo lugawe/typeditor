@@ -43,21 +43,29 @@
 }
 
 .editorSplit {
-    flex: 1;
     display: flex;
+    flex: 1;
     position: relative;
+    align-items: stretch;
 }
 
 .editorPane {
-    padding: 1em;
-    overflow: auto;
-    background: #fff;
+    padding: 0;
+    flex: 1;
+    display: flex;
+}
+
+.editorPane> :global(.monaco-editor) {
+    flex: 1;
 }
 
 .divider {
     width: 4px;
+    flex-shrink: 0;
     background: #144F4F;
     cursor: col-resize;
+    position: relative;
+    z-index: 10;
 }
 
 .previewPane {
@@ -72,6 +80,13 @@
     align-items: center;
     position: relative;
 }
+
+.editorPane,
+.previewPane {
+    min-width: 120px;
+    overflow: auto;
+}
+
 
 .examplepdf {
     width: 80%;
