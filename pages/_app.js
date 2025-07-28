@@ -1,4 +1,4 @@
-import "../styles/globals.css";
+import global from "../styles/globals.css";
 
 export default function ChatApp({ Component, pageProps }) {
   return <Component {...pageProps} />;

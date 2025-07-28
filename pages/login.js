@@ -2,14 +2,17 @@
 import styles from "@/styles/login.module.css";
 import { useState } from "react";
 import { generateAccessToken } from "@/lib/api/account";
+import { useRouter } from "next/router";
 
 export default function Login() {
   // ...
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   async function submit() {
-    const accessToken = await generateAccessToken(name, password);
+    // const accessToken = await generateAccessToken(name, password);
+    await router.push("/projects_overview");
   }
 
   return (

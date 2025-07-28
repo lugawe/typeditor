@@ -1,0 +1,30 @@
+.wrapper {
+    background-color: #eff0f3;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.projectlist {
+    width: 40%;
+}
+
+.button {
+    background: #264d4a;
+    color: #fffde7;
+    border: none;
+    padding: 12px 0;
+    width: 30%;
+    border-radius: .5em;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 12px;
+    margin-top: 32px;
+}
+
+.button:hover {
+    opacity: 0.9;
+}

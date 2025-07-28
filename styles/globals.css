@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+.project-card {
+    background-color: #FFFFE6;
+    width: 100%;
+    min-height: 100px;
+    display: block;
+    padding: 1em;
+    margin: .5em;
+    font-size: 16pt;
+    color: #144F4F;
+    cursor: pointer;
+}
