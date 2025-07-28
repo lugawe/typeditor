@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSearchParams } from 'next/navigation'
 import { useRouter } from "next/router";
 import styles from '@/styles/editor.module.css';
 
@@ -53,10 +54,12 @@ $\alpha + beta = \gamma$  // inline math
 See @figure1 for reference  
 
 `);
+    const params = useSearchParams()
+    const search = params.get('project')
 
     const crumbs = [
         { label: 'Project Overview', href: '/projects_overview' },
-        { label: 'Project 1', href: '/projects_overview' },
+        { label: search, href: '/projects_overview' },
         { label: selected }
     ];
 
