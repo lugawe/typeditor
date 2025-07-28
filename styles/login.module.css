@@ -2,14 +2,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #fffde7;
+  background: #FFFFE6;
   min-height: 100vh;
   font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 .card {
   display: flex;
-  background: white;
+  background: #EFF0F3;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
@@ -29,7 +29,7 @@
 
 .logo {
   font-size: 2rem;
-  color: #264d4a;
+  color: #144F4F;
   margin-bottom: 12px;
 }
 
@@ -41,8 +41,8 @@
 
 .rightPanel {
   flex: 1;
-  background: #264d4a;
-  color: #fff;
+  background: #144F4F;
+  color: #EFF0F3;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -58,13 +58,13 @@
   border: none;
   border-radius: 4px;
   font-size: 0.9rem;
-  background-color: #fffde7;
+  background-color: #FFFFE6;
   color: #000;
 }
 
 .button {
-  background: #fffde7;
-  color: #264d4a;
+  background: #FFFFE6;
+  color: #144F4F;
   border: none;
   padding: 12px 0;
   width: 100%;
@@ -80,7 +80,7 @@
 }
 
 .link {
-  color: #fffde7;
+  color: #FFFFE6;
   text-align: center;
   font-size: 0.85rem;
   text-decoration: underline;

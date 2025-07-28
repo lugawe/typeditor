@@ -1,5 +1,5 @@
 .wrapper {
-    background-color: #eff0f3;
+    background-color: #EFF0F3;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -13,8 +13,8 @@
 }
 
 .button {
-    background: #264d4a;
-    color: #fffde7;
+    background: #144F4F;
+    color: #FFFFE6;
     border: none;
     padding: 12px 0;
     width: 30%;

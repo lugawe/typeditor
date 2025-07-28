@@ -4,9 +4,9 @@ import ProjectCard from '@/components/project_list_element';
 
 export default function ProjectsOverview() {
     const projects = [
-        { id: 1, name: 'Project 1', description: '…' },
-        { id: 2, name: 'Project 2', description: '…' },
-        { id: 3, name: 'Project 3', description: '…' },
+        { id: 1, name: 'Project 1', description: '...' },
+        { id: 2, name: 'Project 2', description: '...' },
+        { id: 3, name: 'Project 3', description: '...' },
     ];
     return (
         <div className={styles.wrapper}>

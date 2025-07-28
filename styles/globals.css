@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+html,
+body,
+#__next {
+    height: 100%;
+    margin: 0;
+}
+
 .project-card {
     background-color: #FFFFE6;
     width: 100%;
