@@ -1,5 +1,5 @@
 // pages/login.js
-import styles from "../styles/login.module.css";
+import styles from "@/styles/login.module.css";
 import { useState } from "react";
 import { generateAccessToken } from "@/lib/api/account";
 
