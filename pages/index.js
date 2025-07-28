@@ -6,7 +6,8 @@ export default function Index() {
   useEffect(() => {
     router.push('/login'),
       router.push('/signup'),
-      router.push('/projects_overview')
+      router.push('/projects_overview'),
+      router.push('/editor')
   }, [])
   return <p>Weiterleitung…</p>
 }
