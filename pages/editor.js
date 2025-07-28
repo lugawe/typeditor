@@ -22,7 +22,37 @@ export default function EditorPage() {
     ];
 
     const [selected, setSelected] = useState(docs[0]);
-    const [content, setContent] = useState();
+    const [content, setContent] = useState(
+        `// This is a line comment
+/* 
+   This is a 
+   block comment 
+*/
+
+= Welcome to Typst
+
+Hello,\nnew line • non-breaking space: ~•~  
+
+- Unordered list item  
+- Another item  
+
+1. First numbered item  
+2. Second numbered item  
+
+**Bold text**, *italic text*, _underlined text_  
+
+$\alpha + beta = \gamma$  // inline math  
+
+#let radius = 5cm  
+#def area(r) { π * r^2 }  
+#show area(radius)  
+
+:star: a symbol  
+
+<figure1>  
+See @figure1 for reference  
+
+`);
 
     const crumbs = [
         { label: 'Project Overview', href: '/projects_overview' },
