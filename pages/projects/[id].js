@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useSearchParams } from "next/navigation";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "@/styles/editor.module.css";
+import { getProjectFiles as apiGetProjectFiles } from "@/lib/api/project_file";
 
 import DocumentSidebar from "@/components/document_sidebar";
 import EditorSplit from "@/components/editor_split";
@@ -9,75 +9,61 @@ import EditorPane from "@/components/editor_pane";
 import PreviewPane from "@/components/preview_pane";
 import Breadcrumbs from "@/components/breadcrumbs";
 
-export default function EditorPage() {
+export default function Editor() {
+  // ...
   const router = useRouter();
 
-  const docs = [
-    "sources_and_notes.typ",
-    "test.typ",
-    "main.typ",
-    "subtext.typ",
-    "description.png",
-    "example_01.png",
-    "header.jpg"
-  ];
+  const [projectFiles, setProjectFiles] = useState([]);
+  const [selectedProjectFile, setSelectedProjectFile] = useState({});
 
-  const [selected, setSelected] = useState(docs[0]);
-  const [content, setContent] = useState(
-    `// This is a line comment
-/* 
-   This is a 
-   block comment 
-*/
+  const getProjectFiles = async () => {
+    const data = await apiGetProjectFiles();
+    setProjectFiles(data);
+    if (data.length > 0) {
+      setSelectedProjectFile(data[0]);
+    }
+  };
 
-= Welcome to Typst
+  useEffect(() => {
+    getProjectFiles();
+  }, []);
 
-Hello,\nnew line • non-breaking space: ~•~  
+  useEffect(() => {
+    setProjectFiles((prevProjectFiles) =>
+      prevProjectFiles.map((file) =>
+        file.id === selectedProjectFile.id ? selectedProjectFile : file
+      )
+    );
+  }, [selectedProjectFile]);
 
-- Unordered list item  
-- Another item  
-
-1. First numbered item  
-2. Second numbered item  
-
-**Bold text**, *italic text*, _underlined text_  
-
-$\alpha + beta = \gamma$  // inline math  
-
-#let radius = 5cm  
-#def area(r) { π * r^2 }  
-#show area(radius)  
-
-:star: a symbol  
-
-<figure1>  
-See @figure1 for reference  
-
-`
-  );
-  const params = useSearchParams();
-  const search = params.get("project");
-
-  const crumbs = [
-    { label: "Project Overview", href: "/projects_overview" },
-    { label: search, href: "/projects_overview" },
-    { label: selected }
+  const breadcrumbs = [
+    { label: "Project Overview", href: "/projects" },
+    { label: router.query.id, href: "/projects/" + router.query.id },
+    { label: selectedProjectFile.name }
   ];
 
   return (
     <div className={styles.page}>
-      <Breadcrumbs items={crumbs} showBack={true} />
+      <Breadcrumbs items={breadcrumbs} showBack={true} />
       <div className={styles.container}>
         <DocumentSidebar
-          docs={docs}
-          selected={selected}
-          onSelect={setSelected}
+          files={projectFiles}
+          selectedFile={selectedProjectFile}
+          onSelect={setSelectedProjectFile}
         />
 
         <EditorSplit>
-          <EditorPane content={content} onChange={setContent} />
+          <EditorPane
+            content={selectedProjectFile.content}
+            onChange={(c) =>
+              setSelectedProjectFile({ ...selectedProjectFile, content: c })
+            }
+          />
           <PreviewPane
-            pdfUrl={`/_next/static/${selected.replace(/\..*/, ".pdf")}`}
+            pdfUrl={`/_next/static/${selectedProjectFile.name?.replace(
+              /\..*/,
+              ".pdf"
+            )}`}
           />
         </EditorSplit>
       </div>

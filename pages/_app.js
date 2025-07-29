@@ -1,5 +1,5 @@
 import "../styles/globals.css";
 
-export default function ChatApp({ Component, pageProps }) {
+export default function Typeditor({ Component, pageProps }) {
   return <Component {...pageProps} />;
 }
