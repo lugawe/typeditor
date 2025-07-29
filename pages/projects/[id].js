@@ -1,13 +1,14 @@
+import styles from "@/styles/editor.module.css";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import styles from "@/styles/editor.module.css";
-import { getProjectFiles as apiGetProjectFiles } from "@/lib/api/project_file";
 
 import DocumentSidebar from "@/components/document_sidebar";
 import EditorSplit from "@/components/editor_split";
 import EditorPane from "@/components/editor_pane";
 import PreviewPane from "@/components/preview_pane";
 import Breadcrumbs from "@/components/breadcrumbs";
+
+import { getProjectFiles as apiGetProjectFiles } from "@/lib/api/project_file";
 
 export default function Editor() {
   // ...
@@ -16,8 +17,10 @@ export default function Editor() {
   const [projectFiles, setProjectFiles] = useState([]);
   const [selectedProjectFile, setSelectedProjectFile] = useState({});
 
+  const projectId = router.query.id;
+
   const getProjectFiles = async () => {
-    const data = await apiGetProjectFiles();
+    const data = await apiGetProjectFiles(projectId);
     setProjectFiles(data);
     if (data.length > 0) {
       setSelectedProjectFile(data[0]);
@@ -38,7 +41,7 @@ export default function Editor() {
 
   const breadcrumbs = [
     { label: "Project Overview", href: "/projects" },
-    { label: router.query.id, href: "/projects/" + router.query.id },
+    { label: projectId, href: "/projects/" + projectId },
     { label: selectedProjectFile.name }
   ];
 

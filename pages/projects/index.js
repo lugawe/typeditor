@@ -1,7 +1,6 @@
 import styles from "@/styles/projects.module.css";
+import React, { useState, useEffect } from "react";
 import ProjectCard from "@/components/project_list_element";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
 import { getProjects as apiGetProjects } from "@/lib/api/project";
 
 export default function ProjectsIndex() {
