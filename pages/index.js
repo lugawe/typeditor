@@ -6,5 +6,5 @@ export default function Index() {
   useEffect(() => {
     router.push("/signin");
   }, []);
-  return <p>Weiterleitung…</p>;
+  return <p>Weiterleitung...</p>;
 }

@@ -16,7 +16,7 @@ export default function Signup() {
   async function submit(e) {
     e.preventDefault();
     // const account = await createAccount(name, password);
-    await router.push("/projects_overview");
+    await router.push("/projects");
   }
 
   return (

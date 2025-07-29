@@ -15,7 +15,7 @@ export default function Signin() {
   async function submit(e) {
     e.preventDefault();
     // const accessToken = await generateAccessToken(name, password);
-    await router.push("/projects_overview");
+    await router.push("/projects");
   }
 
   return (
