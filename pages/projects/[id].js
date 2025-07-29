@@ -7,7 +7,7 @@ import EditorSplit from "@/components/editor_split";
 import EditorPane from "@/components/editor_pane";
 import PreviewPane from "@/components/preview_pane";
 import Breadcrumbs from "@/components/breadcrumbs";
-
+import { createPDF } from "@/lib/api/project";
 import { getProjectFiles as apiGetProjectFiles } from "@/lib/api/project_file";
 
 export default function Editor() {
@@ -16,6 +16,7 @@ export default function Editor() {
 
   const [projectFiles, setProjectFiles] = useState([]);
   const [selectedProjectFile, setSelectedProjectFile] = useState({});
+  const [blobPdfUrl, setBlobPdfUrl] = useState({});
 
   const projectId = router.query.id;
 
@@ -27,8 +28,14 @@ export default function Editor() {
     }
   };
 
+  const compilePDF = async () => {
+    const blob = await createPDF(projectId);
+    setBlobPdfUrl(blob);
+  };
+
   useEffect(() => {
     getProjectFiles();
+    compilePDF();
   }, []);
 
   useEffect(() => {
@@ -63,10 +70,7 @@ export default function Editor() {
             }
           />
           <PreviewPane
-            pdfUrl={`/_next/static/${selectedProjectFile.name?.replace(
-              /\..*/,
-              ".pdf"
-            )}`}
+            pdfUrl={blobPdfUrl}
           />
         </EditorSplit>
       </div>
