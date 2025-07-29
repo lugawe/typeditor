@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { getProjects as apiGetProjects } from "@/lib/api/project";
 
-export default function ProjectsOverview() {
+export default function ProjectsIndex() {
   // ...
   const [projects, setProjects] = useState([]);
 

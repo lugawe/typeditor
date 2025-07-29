@@ -1,10 +1,11 @@
-// pages/login.js
+// pages/signin.js
 import styles from "@/styles/login.module.css";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { useState } from "react";
 import { generateAccessToken } from "@/lib/api/account";
 
-export default function Login() {
+export default function Signin() {
   // ...
   const router = useRouter();
 
@@ -45,9 +46,9 @@ export default function Login() {
           <button className={styles.button} type="submit">
             Sign in
           </button>
-          <a className={styles.link} href="/signup">
+          <Link className={styles.link} href="/signup">
             Sign up
-          </a>
+          </Link>
         </form>
       </div>
     </div>

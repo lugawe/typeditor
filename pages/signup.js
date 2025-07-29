@@ -1,6 +1,7 @@
 // pages/signup.js
 import styles from "@/styles/login.module.css";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { useState } from "react";
 import { createAccount } from "@/lib/api/account";
 
@@ -55,9 +56,9 @@ export default function Signup() {
           <button className={styles.button} type="submit">
             Sign up
           </button>
-          <a className={styles.link} href="login">
-            Login
-          </a>
+          <Link className={styles.link} href="/signin">
+            Sign in
+          </Link>
         </form>
       </div>
     </div>
