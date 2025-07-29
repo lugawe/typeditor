@@ -69,9 +69,7 @@ export default function Editor() {
               setSelectedProjectFile({ ...selectedProjectFile, content: c })
             }
           />
-          <PreviewPane
-            pdfUrl={blobPdfUrl}
-          />
+          <PreviewPane pdfUrl={blobPdfUrl} onExport={compilePDF} />
         </EditorSplit>
       </div>
     </div>
