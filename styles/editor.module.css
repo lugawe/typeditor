@@ -45,6 +45,7 @@
 .editorSplit {
     display: flex;
     flex: 1;
+    height: 100vh;
     position: relative;
     align-items: stretch;
 }
@@ -77,7 +78,7 @@
     background: #EFF0F3;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
 }
 
@@ -89,7 +90,10 @@
 
 
 .examplepdf {
-    width: 80%;
+    width: 90%;
+    height: 100%;
     aspect-ratio: 210 / 297;
     background-color: #FFF;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 6px;
 }
