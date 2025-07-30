@@ -4,24 +4,39 @@ import ProjectCard from "@/components/project_list_element";
 import { getProjects as apiGetProjects } from "@/lib/api/project";
 import Breadcrumbs from "@/components/breadcrumbs";
 
-
 export default function ProjectsIndex() {
   // ...
   const [projects, setProjects] = useState([]);
 
-  const getProjects = async () => {
-    const data = await apiGetProjects();
-    setProjects(data);
-  };
-
   useEffect(() => {
-    getProjects();
+    const stored = sessionStorage.getItem("projects");
+    if (stored) {
+      setProjects(JSON.parse(stored));
+    } else {
+      apiGetProjects().then(setProjects);
+    }
   }, []);
 
-  const breadcrumbsItems = [
-    { label: "Project Overview", href: "/projects" },
-];
+  useEffect(() => {
+    sessionStorage.setItem("projects", JSON.stringify(projects));
+  }, [projects]);
 
+  const breadcrumbsItems = [{ label: "Project Overview", href: "/projects" }];
+
+  const [newProjectName, setNewProjectName] = useState("");
+  const [showInput, setShowInput] = useState(false);
+
+  const handleCreateProject = () => {
+    if (!newProjectName.trim()) return;
+
+    const newProject = {
+      id: Date.now(),
+      name: newProjectName.trim(),
+    };
+    setProjects([...projects, newProject]);
+    setNewProjectName("");
+    setShowInput(false);
+  };
 
   return (
     <div className={styles.page}>
@@ -34,7 +49,42 @@ export default function ProjectsIndex() {
             <ProjectCard obj={p} key={p.id} />
           ))}
         </div>
-        <button className={styles.button}>New Project</button>
+        {showInput ? (
+          <div style={{ marginTop: "1rem", alignItems: "center" }}>
+            <input
+              type="text"
+              value={newProjectName}
+              onChange={(e) => setNewProjectName(e.target.value)}
+              placeholder="Enter project name"
+              style={{
+                padding: "8px",
+                borderRadius: "4px",
+                marginRight: "8px",
+                flex: 1,
+              }}
+            />
+            <div
+              style={{ display: "flex", gap: "1rem", justifyContent: "center" }}
+            >
+              <button onClick={handleCreateProject} className={styles.button}>
+                Confirm
+              </button>
+              <button
+                onClick={() => {
+                  setShowInput(false);
+                  setNewProjectName("");
+                }}
+                className={styles.button}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        ) : (
+          <button onClick={() => setShowInput(true)} className={styles.button}>
+            New Project
+          </button>
+        )}{" "}
       </div>
     </div>
   );

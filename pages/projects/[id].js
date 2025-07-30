@@ -14,9 +14,10 @@ export default function Editor() {
   // ...
   const router = useRouter();
 
-  const [projectFiles, setProjectFiles] = useState([]);
+  const [projectFiles, setProjectFiles] = useState([]); 
   const [selectedProjectFile, setSelectedProjectFile] = useState({});
   const [blobPdfUrl, setBlobPdfUrl] = useState({});
+
 
   const projectId = router.query.id;
 
