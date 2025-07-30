@@ -177,13 +177,6 @@ row! => ["", ""],
     editorRef.current.trigger('', 'redo', null);
   }
 
-  function handleZoomOut() {
-    setFontSize(f => Math.max(6, f - 1));
-  }
-  function handleZoomIn() {
-    setFontSize(f => f + 1);
-  }
-
   const breadcrumbs = [
     { label: "Project Overview", href: "/projects" },
     { label: projectId, href: "/projects/" + projectId },
@@ -214,8 +207,6 @@ row! => ["", ""],
               onTable={handleTable}
               onUndo={handleUndo}
               onRedo={handleRedo}
-              onZoomOut={handleZoomOut}
-              onZoomIn={handleZoomIn}
               onExport={compilePDF}
             />
           </div>

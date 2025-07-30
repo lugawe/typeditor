@@ -11,8 +11,6 @@ import {
     FaTable,
     FaUndoAlt,
     FaRedoAlt,
-    FaSearchMinus,
-    FaSearchPlus,
 } from 'react-icons/fa';
 import { ExportButton } from './preview_pane';
 import styles from '../styles/editor.module.css';
@@ -29,8 +27,6 @@ export default function EditorToolbar({
     onTable,
     onUndo,
     onRedo,
-    onZoomOut,
-    onZoomIn,
     onExport
 }) {
     return (
@@ -50,8 +46,6 @@ export default function EditorToolbar({
             <button onClick={onUndo} title="Undo"><FaUndoAlt /></button>
             <button onClick={onRedo} title="Redo"><FaRedoAlt /></button>
             <div className={styles.spacer} />
-            <button onClick={onZoomOut} title="Zoom Out"><FaSearchMinus /></button>
-            <button onClick={onZoomIn} title="Zoom In"><FaSearchPlus /></button>
             <ExportButton onClick={onExport} />
         </div>
     );
