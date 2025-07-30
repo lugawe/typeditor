@@ -239,7 +239,7 @@ Media Queries:
   }
 
   .sidebar::after {
-    content: '⚙ Settings';
+    content: 'Settings';
     color: #EFF0F3;
     margin-right: 1em;
   }
