@@ -14,10 +14,9 @@ export default function Editor() {
   // ...
   const router = useRouter();
 
-  const [projectFiles, setProjectFiles] = useState([]); 
+  const [projectFiles, setProjectFiles] = useState([]);
   const [selectedProjectFile, setSelectedProjectFile] = useState({});
   const [blobPdfUrl, setBlobPdfUrl] = useState({});
-
 
   const projectId = router.query.id;
 
@@ -50,7 +49,7 @@ export default function Editor() {
   const breadcrumbs = [
     { label: "Project Overview", href: "/projects" },
     { label: projectId, href: "/projects/" + projectId },
-    { label: selectedProjectFile.name }
+    { label: selectedProjectFile.name },
   ];
 
   return (
@@ -66,6 +65,7 @@ export default function Editor() {
         <EditorSplit>
           <EditorPane
             content={selectedProjectFile.content}
+            selectedFile={selectedProjectFile}
             onChange={(c) =>
               setSelectedProjectFile({ ...selectedProjectFile, content: c })
             }
