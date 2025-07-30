@@ -1,42 +1,38 @@
 import styles from "@/styles/projects.module.css";
 import React, { useState, useEffect } from "react";
 import ProjectCard from "@/components/project_list_element";
-import { getProjects as apiGetProjects } from "@/lib/api/project";
+import {
+  getProjects as apiGetProjects,
+  createProject as apiCreateProject
+} from "@/lib/api/project";
 import Breadcrumbs from "@/components/breadcrumbs";
 
 export default function ProjectsIndex() {
   // ...
   const [projects, setProjects] = useState([]);
-
-  useEffect(() => {
-    const stored = sessionStorage.getItem("projects");
-    if (stored) {
-      setProjects(JSON.parse(stored));
-    } else {
-      apiGetProjects().then(setProjects);
-    }
-  }, []);
-
-  useEffect(() => {
-    sessionStorage.setItem("projects", JSON.stringify(projects));
-  }, [projects]);
-
-  const breadcrumbsItems = [{ label: "Project Overview", href: "/projects" }];
-
   const [newProjectName, setNewProjectName] = useState("");
   const [showInput, setShowInput] = useState(false);
 
-  const handleCreateProject = () => {
+  const getProjects = async () => {
+    const data = await apiGetProjects();
+    setProjects(data);
+  };
+
+  useEffect(() => {
+    getProjects();
+  }, []);
+
+  const handleCreateProject = async () => {
     if (!newProjectName.trim()) return;
 
-    const newProject = {
-      id: Date.now(),
-      name: newProjectName.trim(),
-    };
+    const newProject = await apiCreateProject(newProjectName.trim(), "");
+
     setProjects([...projects, newProject]);
     setNewProjectName("");
     setShowInput(false);
   };
+
+  const breadcrumbsItems = [{ label: "Project Overview", href: "/projects" }];
 
   return (
     <div className={styles.page}>
@@ -60,7 +56,7 @@ export default function ProjectsIndex() {
                 padding: "8px",
                 borderRadius: "4px",
                 marginRight: "8px",
-                flex: 1,
+                flex: 1
               }}
             />
             <div
