@@ -2,7 +2,9 @@
 # Typeditor
 ![logo](docs/typeditor.png)
 
-Typeditor
+Typeditor is a web-based document editor that allows users to write
+documents using the Typst markup language directly in the browser and
+convert them into PDF format. 
 
 # Install
 
@@ -27,3 +29,4 @@ or
 ```shell
 npm run dev
 ```
+
