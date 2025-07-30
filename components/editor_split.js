@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styles from '../styles/editor.module.css';
+import EditorToolbar from '@/components/editor_toolbar'
 
 export default function EditorSplit({ children }) {
     const containerRef = useRef(null);
@@ -51,24 +52,18 @@ export default function EditorSplit({ children }) {
     }
 
     return (
-        <div className={styles.editorSplit} ref={containerRef}>
-            <div
-                className={styles.editorPane}
-                style={{ width: leftWidth, flex: 'none' }}
-            >
-                {children[0]}
-            </div>
-
-            <div
-                className={styles.divider}
-                onMouseDown={onMouseDown}
-            />
-
-            <div
-                className={styles.previewPane}
-                style={{ flex: 1 }}
-            >
-                {children[1]}
+        <div className={styles.editorSplit}>
+            <div className={styles.contentArea} ref={containerRef}>
+                <div
+                    className={styles.editorPane}
+                    style={{ flex: 'none', width: leftWidth, height: '100%' }}
+                >
+                    {children[0]}
+                </div>
+                <div className={styles.divider} onMouseDown={onMouseDown} />
+                <div className={styles.previewPane} style={{ flex: 1 }}>
+                    {children[1]}
+                </div>
             </div>
         </div>
     );

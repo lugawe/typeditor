@@ -9,6 +9,7 @@
   display: flex;
   flex: 1;
   min-height: 0;
+  background-color: #eff0f3;
 }
 
 .sidebar {
@@ -16,6 +17,7 @@
   background: #144f4f;
   padding: 1em;
   flex: 0.15;
+  border-radius: 0 16px 0 0;
 }
 
 .fileList {
@@ -44,19 +46,45 @@
 
 .editorSplit {
   display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+}
+
+.shortcutsArea {
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  background: #EFF0F3;
+  gap: 4px;
+}
+
+
+.divider {
+  width: 4px;
+  flex-shrink: 0;
+  background: #144f4f;
+  cursor: col-resize;
+}
+
+.contentArea {
   flex: 1;
-  height: 100vh;
-  position: relative;
-  align-items: stretch;
+  display: flex;
+  min-height: 0;
 }
 
 .editorPane {
   padding: 0;
-  flex: 1;
   display: flex;
+  flex-direction: column;
+  overflow: auto;
+  min-height: 0;
+  height: 100%;
 }
 
-.editorPane > :global(.monaco-editor) {
+.editorPane> :global(.monaco-editor) {
   flex: 1;
 }
 
@@ -70,14 +98,10 @@
 }
 
 .previewPane {
-  padding: 0px;
-  background: white;
   display: flex;
-  justify-content: flex-start;
-  align-items: stretch;
-  flex: 1;
+  flex-direction: column;
   overflow: auto;
-  position: relative;
+  flex: 1;
 }
 
 .editorPane,
@@ -126,4 +150,120 @@
 
 .exportButton:hover {
   background-color: #e6f0f0;
+}
+
+
+.toolbar {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  flex: 1;
+}
+
+.toolbar button {
+  background: none;
+  border: none;
+  padding: 6px;
+  margin: 0 4px;
+  font-size: 1.1em;
+  cursor: pointer;
+  color: #334;
+}
+
+.toolbar button:hover {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.spacersmall {
+  flex: .05;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.shortcutsArea {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  background: #EFF0F3;
+  gap: 4px;
+}
+
+.mainArea {
+  flex: 1;
+  /* take remaining width */
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+
+/*
+Media Queries:
+*/
+
+
+@media (max-width: 800px) {
+
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3.5em;
+    padding: 0;
+    flex: none;
+    background: #144f4f;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.9rem;
+  }
+
+  .sidebar h2,
+  .fileList {
+    display: none;
+  }
+
+  .sidebar::before {
+    content: '☰ Files';
+    color: #EFF0F3;
+    margin-left: 1em;
+  }
+
+  .sidebar::after {
+    content: '⚙ Settings';
+    color: #EFF0F3;
+    margin-right: 1em;
+  }
+
+  .editorPane {
+    width: auto !important;
+    height: auto !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+  }
+
+  .previewPane {
+    height: auto !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+  }
+
+  .contentArea {
+    flex-direction: column;
+  }
+
+  .shortcutsArea {
+    padding: 4px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }

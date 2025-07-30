@@ -7,11 +7,10 @@ const MonacoEditor = dynamic(() => import("@monaco-editor/react"), {
   ssr: false,
 });
 
-export default function EditorPane({ content = "", onChange, selectedFile }) {
-  const editorRef = useRef(null);
+export default function EditorPane({ content = "", onChange, selectedFile, editorRef }) {
 
   function handleEditorDidMount(editor, monaco) {
-    editorRef.current = editor;
+    if (editorRef) editorRef.current = editor;
 
     monaco.languages.register({ id: "typst" });
     monaco.languages.setMonarchTokensProvider("typst", typstMonarch);
@@ -48,7 +47,7 @@ export default function EditorPane({ content = "", onChange, selectedFile }) {
           defaultLanguage="typst"
           value={content}
           onChange={onChange}
-          onMount={handleEditorDidMount}
+          onMount={(editor, monaco) => handleEditorDidMount(editor, monaco)}
           options={{
             lineNumbers: "on",
             minimap: { enabled: false },

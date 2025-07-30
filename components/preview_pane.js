@@ -9,12 +9,9 @@ export function ExportButton({ onClick }) {
   );
 }
 
-export default function PreviewPane({ pdfUrl, onExport }) {
+export default function PreviewPane({ pdfUrl }) {
   return (
     <div className={styles.previewPane}>
-      <div className={styles.exportWrapper}>
-        <ExportButton onClick={onExport} />
-      </div>
       <div className={styles.examplepdf}>
         <iframe
           src={pdfUrl}
